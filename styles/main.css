@@ -1,0 +1,83 @@
+html {
+  height: 100%; /*makes sure our HTML takes up 100% of the browser window*/
+  font-size: 100%;
+}
+
+body {
+  font-family: "Open Sans"; /*sets our font to the "open sans" typeface*/
+  color: white; /*sets the text color to white*/
+  min-height: 100%; /*says the height of the body must be, at minimum, 100% of the window*/
+}
+
+body.landing {
+  background-color: rgb(58,23,65); /*sets the background color to an RGB value*/
+}
+
+.navbar {
+  padding: 0.5rem;
+  background-color: rgb(101, 18, 95);
+}
+
+/*descendant selector = selects classes with ".logo" within the ".navbar" class*/
+.navbar .logo {
+  position: relative;
+  left: 2rem;
+}
+
+.hero-content {
+  position: relative;
+  min-height: 600px; /*hero content element must be at least 600px*/
+  background-image: url(../assets/images/bloc_jams_bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center center; /*center both horizontal (first) and vertical (second)*/
+  background-size: cover; /*scales image so the full image is displayed in the container*/
+}
+
+/*descendant selector = selects classes with ".hero-title" within the ".hero-content" class*/
+.hero-content .hero-title {
+  position: absolute;
+  top: 40%;
+  /*-webkit -moz -ms are vendor prefixes and reqiured when using CSS that hasn't been officially adopted*/
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%; /*makes sure the title inhabits the full width of its container*/
+  text-align: center; /*aligns text in teh horizontal center of the element*/
+  font-size: 4rem; /*specifies the size of the font in the root em units*/
+  font-weight: 300; /*makes the font thinner or lighter weight*/
+  text-transform: uppercase; /*transforms text to be all uppercase*/
+  letter-spacing: 0.5rem; /*puts 0.5 root ems worth of space between each letter*/
+  text-shadow: 1px 1px 0px rgb(58,23,63); /*creates a shadow underneath the text for readability over the image*/
+}
+
+/*<section> containing <div>s and evertything inside it*/
+.selling-points {
+  position: relative;
+  display: table;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*all <div> tags*/
+.point {
+  display: table-cell;
+  position: relative;
+  width: 33.3%;
+  padding: 2rem;
+  text-align: center;
+}
+
+/*all <h5> tags w/in the <div>s*/
+.point .point-title {
+  font-size: 1.25rem;
+}
+
+/*<span>s within <div>s*/
+/*why separated by comma? These "icons" aren't images?!*/
+.ion-music-note, .ion-radio-waves, .ion-iphone {
+  color: rgb(233, 50, 117);
+  font-size: 5rem;
+}
