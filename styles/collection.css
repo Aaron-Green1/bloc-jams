@@ -31,6 +31,7 @@ body.collection {
   color: rgba(255,255,255,0.6);
 }
 
+/*typo happened...adding to have a "change" to merge*/
 .collection-album-container .caption p a.album-name {
   color: white;
 }
