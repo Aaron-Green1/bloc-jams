@@ -52,7 +52,7 @@ var setCurrentAlbum = function(album) {
   albumTitle.firstChild.nodeValue = album.title;  //sets album title to object.title
   albumArtist.firstChild.nodeValue = album.artist;  //sets artist to object.artist
   albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;  //sets release info to object.year and object.label
-  albumImage.setAttribute('scr', album.albumArtUrl);  //sets album image to URL provided in object.albumArtUrl
+  albumImage.setAttribute('src', album.albumArtUrl);  //sets album image to URL provided in object.albumArtUrl
 
   albumSongList.innerHTML = ' '; //clears current song data to provide a clean slate
 
