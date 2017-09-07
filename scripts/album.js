@@ -30,6 +30,21 @@ var albumMarconi = {
   ]
 };
 
+var albumAwayWithWords = {
+  title: "Away With Words, Part 1",
+  artist: "Angel Vivaldi",
+  label: "None :(",
+  year: "2014",
+  albumArtUrl: "assets/images/album_covers/vivaldi.jpg",
+  songs: [
+    { title: ".----", duration: "5:12" },
+    { title: "..---", duration: "4:36" },
+    { title: "...--", duration: "4:28" },
+    { title: "....-", duration: "3:40" },
+    {title: ".....", duration: "4:07" },
+  ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
   var template =
     '<tr class="album-view-song-item">'
@@ -41,18 +56,18 @@ var createSongRow = function(songNumber, songName, songLength) {
   return template;
 };
 
-var setCurrentAlbum = function(album) {
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
-  var albumTitle = document.getElementsByClassName('album-view-title')[0];
-  var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-  var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-  var albumImage = document.getElementsByClassName('album-cover-art')[0];
-  var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+var setCurrentAlbum = function(album) {
 
   albumTitle.firstChild.nodeValue = album.title;  //sets album title to object.title
   albumArtist.firstChild.nodeValue = album.artist;  //sets artist to object.artist
   albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;  //sets release info to object.year and object.label
-  albumImage.setAttribute('scr', album.albumArtUrl);  //sets album image to URL provided in object.albumArtUrl
+  albumImage.setAttribute('src', album.albumArtUrl);  //sets album image to URL provided in object.albumArtUrl
 
   albumSongList.innerHTML = ' '; //clears current song data to provide a clean slate
 
@@ -63,5 +78,15 @@ var setCurrentAlbum = function(album) {
 };
 
 window.onload = function() {
-  setCurrentAlbum(albumPicasso); //is this where the album function is now being told to use the albumPicasso object for the fuction(album) code?
+  setCurrentAlbum(albumPicasso);
+
+  var albums = [albumPicasso, albumMarconi, albumAwayWithWords];
+  var albumArrIndex = 1;
+  albumImage.addEventListener("click", function(event) {
+    setCurrentAlbum(albums[albumArrIndex]);
+    albumArrIndex++;
+    if(albumArrIndex == albums.length) {
+      albumArrIndex = 0;
+    }
+  });
 };
