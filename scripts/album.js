@@ -62,6 +62,38 @@ var setCurrentAlbum = function(album) {
   }
 };
 
+var findParentByClassName = function(domElement, target) {
+
+  if(domElement) {
+    var currentEle = domElement.parentElement;
+    while(currentEle.className !== target && currentEle.className !== null) {
+      currentEle = currentEle.parentElement;
+    }
+    return currentEle;
+  }
+};
+
+var getSongItem = function(songEle) {
+
+  switch(songEle.className) {
+    case 'album-song-button':
+    case 'ion-play':
+    case 'ion-pause':
+      return findParentByClassName(songEle, 'song-item-number');
+
+    case 'album-view-song-item':
+      return songEle.querySelector('.song-item-number');
+
+    case 'song-item-title':
+    case 'song-item-duration':
+      return findParentByClassName(songEle, 'album-view-song-name').querySelector('.song-item-number');
+    case 'song-item-number':
+      return songEle;
+    default:
+      return;
+  }
+};
+
 var songListContainer = document.getElementsByClassName("album-view-song-list")[0];
 var songRows = document.getElementsByClassName("album-view-song-item");
 
