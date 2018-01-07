@@ -161,6 +161,31 @@ var previousSong = function() {
   $lastSongNumberCell.html(lastSongNumber);
 };
 
+var togglePlayFromPlayerBar = function() {
+  var currentlyPlayingSongCell = getSongNumberCell(currentlyPlayingSongNumber);
+
+  /* after doing the if and else if statements below (lines 178 and 182), I noticed this only worked when a song was already playing
+  if you tried to play a song from the bar when one hasn't been selected, you get an error that it can't read from null
+  so, I attempted to add a "null case" to the code to auto play the first song, when clicked */
+
+  if(currentSoundFile === null) {
+    setSong(1);
+    currentlyPlayingSongCell = getSongNumberCell(currentlyPlayingSongNumber);
+    currentlyPlayingSongCell.html(pauseButtonTemplate);
+    $('main-controls .play-pause').html(playerBarPauseButton);
+    updatePlayerBarSong();
+    currentSoundFile.play();
+  } else if(currentSoundFile.isPaused()) {
+    currentlyPlayingSongCell.html(pauseButtonTemplate);
+    $('.main-controls .play-pause').html(playerBarPauseButton);
+    currentSoundFile.play();
+  } else if (currentSoundFile) {
+    currentlyPlayingSongCell.html(playButtonTemplate);
+    $('.main-controls .play-pause').html(playerBarPlayButton);
+    currentSoundFile.pause();
+  }
+};
+
 var updatePlayerBarSong = function() {
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
@@ -181,9 +206,11 @@ var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
+var $playPauseButton = $('.main-controls .play-pause');
 
 $(document).ready(function() {
   setCurrentAlbum(albumPicasso); //is this where the album function is now being told to use the albumPicasso object for the fuction(album) code?
   $previousButton.click(previousSong);
   $nextButton.click(nextSong);
+  $playPauseButton.click(togglePlayFromPlayerBar);
 });
