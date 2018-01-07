@@ -62,14 +62,19 @@ var setCurrentAlbum = function(album) {
   }
 };
 
-var findParentByClassName = function(domElement, target) {
-
-  if(domElement) {
-    var currentEle = domElement.parentElement;
-    while(currentEle.className !== target && currentEle.className !== null) {
-      currentEle = currentEle.parentElement;
-    }
-    return currentEle;
+var findParentByClassName = function(element, targetClass) {
+    if (element) {
+    var currentParent = element.parentElement;
+    while(currentParent.className != targetClass && currentParent.className !== null) {
+    if (currentParent === undefined) {
+        console.log("No parent found");
+        return currentParent;
+  } else if (currentParent.className != targetClass) {
+            console.log("No parent found with that class name");
+  }
+        currentParent = currentParent.parentElement;
+    };
+  return currentParent;
   }
 };
 
